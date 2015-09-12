@@ -11,6 +11,18 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Custom Gems
+
+gem 'devise'
+gem 'faker', '~> 1.5.0'
+gem 'figaro', '1.0'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'rspec-rails', '~> 3.0'
+gem 'capybara', github: 'jnicklas/capybara', branch: 'master'
+gem 'awesome_print'
+gem 'factory_girl_rails', '~> 4.0'
+gem 'pry-rails'
 
 group :development, :test do
   gem 'byebug'
