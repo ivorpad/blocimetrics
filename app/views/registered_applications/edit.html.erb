@@ -1,2 +1,21 @@
-<h1>RegisteredApplications#edit</h1>
-<p>Find me in app/views/registered_applications/edit.html.erb</p>
+<h1>Edit Application</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= form_for @registered_application do |f| %>
+    <div class="form">
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", placeholder: 'Enter the name of the website' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :url %>
+          <%= f.text_field :url, class: "form-control", placeholder: 'Enter the URL' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Update Application", class: 'btn btn-success' %>
+        </div>
+    </div>
+    <% end %>
+  </div>
+</div>

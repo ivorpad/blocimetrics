@@ -16,22 +16,40 @@ class RegisteredApplicationsController < ApplicationController
     @registered_application.user = current_user
 
     if @registered_application.save
-        redirect_to registered_application_path(@registered_application)
         flash[:notice] = "The application has been saved"
+        redirect_to registered_application_path(@registered_application)
     else
-        render 'new'
         flash[:error] = "The application could not be saved"
+        render 'new'
     end
-
   end
 
   def edit
+    @registered_application = RegisteredApplication.find(params[:id])
   end
 
   def update
+    @registered_application = RegisteredApplication.find(params[:id])
+
+    if @registered_application.update_attributes(registered_applications_params)
+      flash[:notice] = "Application updated"
+      redirect_to registered_application_path(@registered_application)
+    else
+      flash[:error] = "The application was not updated"
+      render 'show'
+    end
   end
 
   def destroy
+    @registered_application = RegisteredApplication.find(params[:id])
+
+    if @registered_application.destroy
+      flash[:notice] = "Application deleted"
+      redirect_to registered_applications_path
+    else
+      flash[:notice] = "Application was not deleted"
+      render 'show'
+    end
   end
 
   private
