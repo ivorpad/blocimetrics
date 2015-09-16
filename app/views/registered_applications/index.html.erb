@@ -1,10 +1,23 @@
-<h1>RegisteredApplications#index</h1>
+<h1>Registered Applications</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Application Name</th>
+      <th>URL</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+    <% @registered_applications.each do |app| %>
+      <tbody>
+        <tr>
+          <td><%= link_to app.name, registered_application_path(app) %></td>
+          <td><%= app.url %></td>
+          <td><%= link_to "Edit" , edit_registered_application_path(app) %></td>
+          <td><%= link_to "Delete", registered_application_path(app), method: :delete, data: { confirm: "Are you sure?" }  %></td>
+        </tr>
+      </tbody>
+    <% end %>
+</table>
 
-  <% @registered_applications.each do |app| %>
-    <p><%= app.name %></p>
-    <p><%= app.url %></p>
-    <p><%= app.user.name %></p>
-    <%= link_to "Display info", registered_application_path(app) %>
-    <%= link_to "Edit" , edit_registered_application_path(app) %>
-    <%= link_to "Delete", registered_application_path(app), method: :delete %>
-  <% end %>
+<%= link_to "Register Application", new_registered_application_path, class: 'btn btn-primary' %>
