@@ -1,4 +1,7 @@
 <h1>Registered Applications</h1>
+
+<% if user_signed_in? %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -20,4 +23,11 @@
     <% end %>
 </table>
 
+<% else %>
+
+<p>
+  Please register to add applications.
+</p>
+
+<% end %>
 <%= link_to "Register Application", new_registered_application_path, class: 'btn btn-primary' %>
