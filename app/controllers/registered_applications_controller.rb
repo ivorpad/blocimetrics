@@ -1,10 +1,13 @@
 class RegisteredApplicationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @registered_applications = RegisteredApplication.where(user_id: current_user.id)
   end
 
   def show
     @registered_application = RegisteredApplication.find(params[:id])
+    @events = @registered_application.events.group_by(&:name)
   end
 
   def new

@@ -1,4 +1,6 @@
 <h1><%= @registered_application.name %></h1>
 <p><%= @registered_application.url %></p>
-
+  <% @events.each do |event| %>
+    <p><%= event %></p>
+  <% end %>
 <%= link_to "Back" , registered_applications_path %>
