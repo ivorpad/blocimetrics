@@ -8,4 +8,5 @@ class RegisteredApplication < ActiveRecord::Base
             uniqueness: true
 
   belongs_to :user
+  has_many :events
 end
