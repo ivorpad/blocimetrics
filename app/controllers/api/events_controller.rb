@@ -1,7 +1,6 @@
 class API::EventsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_filter :cors_preflight_check
-  after_filter :set_access_control_headers
+  before_filter :set_access_control_headers
 
   def create
     registered_application = RegisteredApplication.find_by(url: request.env['HTTP_ORIGIN'])
@@ -13,6 +12,7 @@ class API::EventsController < ApplicationController
       # (the event creation code will need to call the event_params method)
       # We instantiate an event with `build`.
       @event = registered_application.events.build(event_params)
+
       if @event.save
           render json: @event, status: :created
         else
@@ -20,7 +20,6 @@ class API::EventsController < ApplicationController
       end
     end
   end
-
 
   private
 
@@ -33,14 +32,5 @@ class API::EventsController < ApplicationController
     headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
     headers['Access-Control-Allow-Headers'] = 'Content-Type'
   end
-
-  def cors_preflight_check
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Allow-Headers'] = 'Access-Control-Allow-Origin, X-Requested-With, X-Prototype-Version, Content-Type'
-    headers['Access-Control-Max-Age'] = '1728000'
-    render text: "" if request.method == "OPTIONS"
-  end
-
 
 end
