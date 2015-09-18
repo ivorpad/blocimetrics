@@ -11,7 +11,7 @@ class API::EventsController < ApplicationController
       # Create a new event associated with the registered_application
       # (the event creation code will need to call the event_params method)
       # We instantiate an event with `build`.
-      @event = registered_application.events.build(event_params)
+      @event = registered_application.events.create(event_params)
 
       if @event.save
           render json: @event, status: :created

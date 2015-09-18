@@ -24,6 +24,8 @@ gem 'awesome_print'
 gem 'factory_girl_rails', '~> 4.0'
 gem 'pry-rails'
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   gem 'byebug'

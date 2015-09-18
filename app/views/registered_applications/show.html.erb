@@ -1,7 +1,32 @@
-<h1><%= @registered_application.name %></h1>
-<p><%= @registered_application.url %></p>
-    <p><%= @events.count %> Events fired.</p>
-  <% @events.each do |name, event| %>
-    <p><b><%= name %></b> have been fired </p>
-  <% end %>
-<%= link_to "Back" , registered_applications_path %>
+  <row>
+
+    <div class="col-md-8 col-md-push-2">
+      <h1>
+        <%= link_to @registered_application.name, @registered_application.url %>
+      </h1>
+
+  <!-- # line_chart @registered_application.events.group_by_day(:created_at).count -->
+
+  <table class="table">
+    <tbody>
+      <thead>
+        <td> <b>Event Name</b> </td>
+        <td> <b>Count</b> </td>
+      </thead>
+
+      <% @events.each do |name, event| %>
+        <tr>
+          <td><%= name %></td>
+          <td><%= event.count %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+  <%= pie_chart @registered_application.events.group(:name).count %>
+
+  <%= link_to "Back" , registered_applications_path %>
+
+</div>
+</row>
